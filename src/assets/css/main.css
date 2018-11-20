@@ -1,0 +1,492 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700");
+
+body {
+  margin: 0;
+  background-color: black;
+  overflow-x: hidden;
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  color: #ffc500;
+}
+
+/* stars and cloud background */
+.stars,
+.twinkling,
+.clouds {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.stars {
+  z-index: -2;
+  background: #000 url("https://image.ibb.co/mjnygo/stars.png") repeat top center;
+}
+
+.twinkling {
+  z-index: -1;
+  background: transparent url("https://image.ibb.co/ir1DE8/twinkling.png") repeat top center;
+  animation: move-twink-back 200s linear infinite;
+}
+
+.clouds {
+  z-index: 0;
+  background: transparent url("https://image.ibb.co/bT4N7T/clouds.png") repeat top center;
+  animation: move-clouds-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+@keyframes move-clouds-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 10000px 0;
+  }
+}
+
+/* loader */
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.loader-block {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.loader div {
+  position: absolute;
+  top: 27px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #000000;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.loader div:nth-child(1) {
+  left: 6px;
+  animation: ellipsis1 0.6s infinite;
+}
+.loader div:nth-child(2) {
+  left: 6px;
+  animation: ellipsis2 0.6s infinite;
+}
+.loader div:nth-child(3) {
+  left: 26px;
+  animation: ellipsis2 0.6s infinite;
+}
+.loader div:nth-child(4) {
+  left: 45px;
+  animation: ellipsis3 0.6s infinite;
+}
+@keyframes ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(19px, 0);
+  }
+}
+
+/* logo */
+.logo {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  animation: logo 9s ease-out;
+}
+
+.logo.active {
+  display: flex;
+}
+
+.logo img {
+  width: 60%;
+}
+
+@keyframes logo {
+  0% {
+    transform: scale(2.75, 2.75);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+p {
+  color: #ffc500;
+}
+
+/* dropdown */
+.movie-dropdown {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.select {
+  position: relative;
+  width: max-content;
+  margin: auto;
+}
+
+.dropdown {
+  position: absolute;
+  width: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  bottom: 100%;
+}
+
+.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.dropdown__content {
+  padding: 1.5em 1em;
+  max-height: 30em;
+  overflow-y: auto;
+  background: #000000;
+}
+
+.dropdown-list .item {
+  border-bottom: 1px solid rgba(255, 232, 31, 0.8);
+  padding: 0.5rem;
+  font-size: 16px;
+  text-transform: capitalize;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.dropdown-list .item p {
+  margin: 0;
+}
+
+.button {
+  border: 1px solid #ffc500;
+  padding: 0.8em 1.2em;
+  background: #ffc500;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button .content .title {
+  background: transparent;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+  width: 200px;
+}
+
+.button .content .title::placeholder {
+  color: #000000;
+}
+
+.button .content .icon {
+  color: #000000;
+  font-size: 18px;
+}
+
+/* opening crawl */
+.crawl {
+  margin: 0 auto;
+  position: relative;
+  width: 80%;
+}
+.crawl.animate {
+  animation: scroll 10s linear;
+}
+.crawl .content {
+  line-height: 32px;
+  font-size: 20px;
+  text-align: justify;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* movie information */
+.movie-info {
+  display: none;
+  padding: 60px 20px;
+  position: relative;
+  z-index: 5;
+}
+.movie-info.active {
+  display: block;
+}
+
+.movie-episode,
+.movie-theme,
+.movie-title {
+  text-align: center;
+}
+
+.movie-episode {
+  font-size: 20px;
+  margin: 1rem 0;
+}
+
+.movie-theme {
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.movie-title {
+  font-size: 35px;
+}
+
+/* Characters */
+.characters-block {
+  margin-top: 2rem;
+}
+
+.characters-block.active {
+  animation: fade 2s ease-in-out;
+  animation-delay: 10s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.characters {
+  margin-top: 2rem;
+}
+
+.characters-heading {
+  font-size: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.gender-select-block {
+  margin: 1rem auto;
+  width: 80%;
+}
+
+.gender-select {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #ffc500;
+  color: #ffc500;
+  padding: 10px;
+  width: 30%;
+}
+
+.gender-select:focus {
+  outline: none;
+}
+
+.table {
+  background: rgba(0, 0, 0, 0.8);
+  border-collapse: collapse;
+  border-top: 1px solid rgba(255, 197, 0, 0.5);
+  margin: 0 auto;
+  margin-top: 1rem;
+  overflow: hidden;
+  width: 80%;
+}
+
+.table thead th {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 2% 0 2% 2%;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.table th i {
+  margin-left: 5px;
+}
+
+.table thead tr {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.table tr:nth-child(odd) {
+  background: rgba(255, 225, 225, 0.1);
+}
+
+.table tr:nth-child(even) {
+  background: rgba(255, 225, 225, 0.2);
+}
+
+.table td {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2% 0 2% 2%;
+  text-transform: uppercase;
+}
+
+.table.total {
+  border-top: none;
+  border-bottom: 1px solid rgba(255, 197, 0, 0.5);
+  margin-top: 0;
+}
+
+.table.total tr {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.table.total td {
+  font-size: 13px;
+  text-transform: none;
+}
+
+/* modal */
+.modal {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  position: fixed;
+  width: 100vw;
+  z-index: 999;
+}
+
+.modal-content {
+  background: black;
+  border: 1px solid #ffc500;
+  padding: 2rem;
+  position: relative;
+  width: 300px;
+}
+
+.modal-close {
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.modal-header {
+  font-size: 20px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.modal-body {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.modal-description {
+  margin-bottom: 0.5rem;
+}
+
+.modal-footer {
+  text-align: center;
+}
+
+.modal-button {
+  background: #ffc500;
+  border: none;
+  cursor: pointer;
+  padding: 0.6em 1.2em;
+}
+
+@media only screen and (max-width: 48em) {
+  .crawl .content,
+  .movie-episode,
+  .movie-theme {
+    font-size: 16px;
+  }
+  .movie-title {
+    font-size: 25px;
+  }
+  .characters-heading {
+    font-size: 16px;
+  }
+  .table {
+    width: 100%;
+  }
+  .table thead th {
+    font-size: 11px;
+  }
+  .table td {
+    font-size: 10px;
+  }
+}
