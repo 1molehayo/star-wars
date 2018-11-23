@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { _filterByGender, _sortCharacters } from "utility";
 
 class Characters extends React.Component {
   render() {
@@ -8,7 +7,7 @@ class Characters extends React.Component {
       <div className="characters">
         <h5 className="characters-heading">Character List</h5>
         <div className="gender-select-block">
-          <select className="gender-select" onChange={e => _filterByGender(e, this)}>
+          <select className="gender-select" onChange={this.props.filterByGender}>
             <option value="all">All Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
@@ -19,7 +18,7 @@ class Characters extends React.Component {
         <table className="table">
           <thead>
             <tr>
-              <th data-id="name" onClick={e => _sortCharacters(e, this)}>
+              <th data-id="name" onClick={this.props.sortCharacters}>
                 Name
                 <i
                   className={`fas ${
@@ -27,7 +26,7 @@ class Characters extends React.Component {
                   }`}
                 />
               </th>
-              <th data-id="gender" onClick={e => _sortCharacters(e, this)}>
+              <th data-id="gender" onClick={this.props.sortCharacters}>
                 Gender
                 <i
                   className={`fas ${
@@ -35,7 +34,7 @@ class Characters extends React.Component {
                   }`}
                 />
               </th>
-              <th data-id="height" onClick={e => _sortCharacters(e, this)}>
+              <th data-id="height" onClick={this.props.sortCharacters}>
                 Height
                 <i
                   className={`fas ${
@@ -70,7 +69,9 @@ class Characters extends React.Component {
 
 Characters.propTypes = {
   characters: PropTypes.array,
+  filterByGender: PropTypes.func,
   sortAsc: PropTypes.bool,
+  sortCharacters: PropTypes.func,
   sortedBy: PropTypes.string,
   sumHeights: PropTypes.string
 };

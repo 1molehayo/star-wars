@@ -1,14 +1,22 @@
 import React, { Component } from "react";
+import Characters from "components/Characters";
 import Crawl from "components/Crawl";
 import Loader from "components/Loader";
 import Modal from "components/Modal";
 import Select from "components/Select";
 
-import { _getMovies, _isEmpty, _refreshPage, _selectMovie, _toggleErrorModal } from "utility";
+import {
+  _filterByGender,
+  _getMovies,
+  _isEmpty,
+  _refreshPage,
+  _selectMovie,
+  _sortCharacters,
+  _toggleErrorModal
+} from "utility";
 
 import logo from "assets/img/starwars-logo.png";
 import "./App.css";
-import Characters from "components/Characters";
 
 class App extends Component {
   constructor(props) {
@@ -66,7 +74,9 @@ class App extends Component {
             <Loader show={this.state.isLoadingCharacters} background="#ffc500" />
             <Characters
               characters={this.state.characters}
+              filterByGender={e => _filterByGender(e, this)}
               sortAsc={this.state.sortAsc}
+              sortCharacters={e => _sortCharacters(e, this)}
               sortedBy={this.state.sortedBy}
               sumHeights={this.state.sumHeights}
             />
